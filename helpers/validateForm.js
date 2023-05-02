@@ -7,6 +7,30 @@ export function validateForm(event) {
   if (!name || !quotas || !date || !startTime || !endTime)
     return { status: true, message: "❌ No pueden quedar campos vacíos" };
 
+  // quotas validation
+  if (quotas <= 0)
+    return { status: true, message: "❌ Los cupos deben ser superior a cero" };
+
+  // weekdays validation
+  // comparison of past dates
+  const today = Date.now();
+  const selectedDate = Date.parse(date);
+  if (selectedDate < today)
+    return {
+      status: true,
+      message: "❌ Solo puede seleccionar dias a partir de mañana",
+    };
+
+  //verification of buisiness days
+  const dateStringToArray = date.split("-");
+  const parsedDate = new Date(dateStringToArray);
+  const weekDay = parsedDate.toUTCString().slice(0, 3);
+  if (weekDay.includes("Sat") || weekDay.includes("Sun"))
+    return {
+      status: true,
+      message: "❌ Solo se permiten días entre lunes y viernes",
+    };
+
   // Time validation
   const [startHour, startMinutes] = startTime.split(":");
 
@@ -18,27 +42,11 @@ export function validateForm(event) {
 
   const [endHour, endMinutes] = endTime.split(":");
 
-  console.log(endMinutes);
   if (endHour > 22 || (endHour == 22 && Number(endMinutes) > 0))
     return {
       status: true,
       message: "❌ No puede crear capacitaciones despues de las 10pm",
     };
-
-  // weekdays validation
-  const newDate = date.split("-");
-  const parsedDate = new Date(newDate);
-  const weekDay = parsedDate.toUTCString().slice(0, 3);
-
-  if (weekDay.includes("Sat") || weekDay.includes("Sun"))
-    return {
-      status: true,
-      message: "❌ Solo se permiten días entre lunes y viernes",
-    };
-
-  // quotas validation
-  if (quotas <= 0)
-    return { status: true, message: "❌ Los cupos deben ser superior a cero" };
 
   return { status: false, message: "✔️ Datos enviados correctamente" };
 }

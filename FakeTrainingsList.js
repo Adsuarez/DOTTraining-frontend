@@ -5,12 +5,12 @@ export const trainingsList = [
     quotas: 10,
     studyDays: [
       {
-        day: "29/04/2023",
+        date: "29/04/2023",
         startTime: 10,
         endTime: 12,
       },
       {
-        day: "30/04/2023",
+        date: "30/04/2023",
         startTime: 14,
         endTime: 15,
       },
@@ -22,12 +22,12 @@ export const trainingsList = [
     quotas: 10,
     studyDays: [
       {
-        day: "10/05/2023",
+        date: "10/05/2023",
         startTime: 11,
         endTime: 13,
       },
       {
-        day: "15/05/2023",
+        date: "15/05/2023",
         startTime: 20,
         endTime: 22,
       },

@@ -1,5 +1,7 @@
-import { trainingsList } from "../FakeTrainingsList.js";
+import { getTrainings } from "@/services/trainings";
+
 export default function Trainings() {
+  const trainingsList = getTrainings();
   return (
     <ul>
       {trainingsList.map((training) => (
@@ -9,8 +11,8 @@ export default function Trainings() {
           <ul>
             días de estudio:
             {training.studyDays.map((days) => (
-              <li key={days.day}>
-                <p>fecha: {days.day}</p>
+              <li key={days.date}>
+                <p>fecha: {days.date}</p>
                 <p>Hora de inicio: {days.startTime}</p>
                 <p>Hora de fin: {days.endTime}</p>
               </li>

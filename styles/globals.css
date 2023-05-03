@@ -31,3 +31,8 @@ form {
   gap: 5px;
   align-items: center;
 }
+
+form input,
+form button {
+  border-radius: 5px;
+}

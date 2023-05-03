@@ -32,7 +32,9 @@ export function validateForm(event) {
     };
 
   // Time validation
-  const [startHour, startMinutes] = startTime.split(":");
+  const arrayStartTime = startTime.split(":");
+  const startHour = Number(arrayStartTime[0]);
+  const startMinutes = Number(arrayStartTime[1]);
 
   if (startHour < 10)
     return {
@@ -40,12 +42,29 @@ export function validateForm(event) {
       message: "❌ No puede crear capacitaciones antes de las 10am",
     };
 
-  const [endHour, endMinutes] = endTime.split(":");
+  const arrayEndTime = endTime.split(":");
+  const endHour = Number(arrayEndTime[0]);
+  const endMinutes = Number(arrayEndTime[1]);
 
-  if (endHour > 22 || (endHour == 22 && Number(endMinutes) > 0))
+  if (endHour > 22 || (endHour == 22 && endMinutes > 0))
     return {
       status: true,
       message: "❌ No puede crear capacitaciones despues de las 10pm",
+    };
+
+  if (
+    endHour < startHour ||
+    (endHour === startHour && startMinutes >= endMinutes)
+  )
+    return {
+      status: true,
+      message: "❌ La hora de fin no puede ser inferior que la hora de inicio",
+    };
+
+  if (startHour === endHour && endMinutes - startMinutes < 30)
+    return {
+      status: true,
+      message: "❌ La duración mínima de las capacitaciones es de 30 minutos",
     };
 
   return { status: false, message: "✔️ Datos enviados correctamente" };

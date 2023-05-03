@@ -10,6 +10,10 @@ const links = [
     label: "Create training",
     route: "/trainingForm",
   },
+  {
+    label: "Authentication",
+    route: "/auth",
+  },
 ];
 
 export default function Navigation() {

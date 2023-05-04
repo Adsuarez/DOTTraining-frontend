@@ -3,7 +3,7 @@ import { useState } from "react";
 import Layout from "../components/Layout";
 import { createTraining } from "@/services/trainings";
 
-export default function TrainingForm() {
+export default function TrainingFormPage() {
   const [error, setError] = useState({ status: false, message: "✔️" });
 
   const handleSubmit = (event) => {

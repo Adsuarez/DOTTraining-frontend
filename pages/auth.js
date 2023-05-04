@@ -2,7 +2,7 @@ import { handleLogin, handleSignin } from "@/helpers/handleAuth";
 import Layout from "../components/Layout";
 import styles from "../styles/FormAuth.module.css";
 
-export default function auth() {
+export default function authPage() {
   return (
     <Layout>
       <h1>Gestión de sesión</h1>

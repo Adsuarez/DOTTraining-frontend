@@ -11,8 +11,11 @@ export default function TrainingFormPage() {
     const { name, quotas, date, startTime, endTime } = Object.fromEntries(
       new FormData(event.target)
     );
-    setError(validateForm(event));
-    !error.status && createTraining({ name, quotas, date, startTime, endTime });
+    validateForm(event).then((existError) => {
+      setError(existError);
+      if (existError.status === false)
+        return createTraining({ name, quotas, date, startTime, endTime });
+    });
   };
 
   return (

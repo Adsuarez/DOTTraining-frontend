@@ -1,4 +1,4 @@
-export function validateForm(event) {
+export async function validateForm(event) {
   event.preventDefault();
   const { name, quotas, date, startTime, endTime } = Object.fromEntries(
     new FormData(event.target)

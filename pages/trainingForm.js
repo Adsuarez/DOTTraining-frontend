@@ -11,10 +11,19 @@ export default function TrainingFormPage() {
     const { name, quotas, date, startTime, endTime } = Object.fromEntries(
       new FormData(event.target)
     );
-    validateForm(event).then((existError) => {
-      setError(existError);
-      if (existError.status === false)
-        return createTraining({ name, quotas, date, startTime, endTime });
+    validateForm(event).then((validationResult) => {
+      if (validationResult.status === false) {
+        createTraining({ name, quotas, date, startTime, endTime }).then(
+          (json) => {
+            if (json.errorMessage)
+              return setError({
+                status: true,
+                message: `❌ ${json.errorMessage}, please try to sign in again`,
+              });
+            return setError(validationResult);
+          }
+        );
+      }
     });
   };
 

@@ -10,8 +10,12 @@ export async function createTraining(newTraining, token) {
   const trainingToCreate = {
     name,
     quotas,
-    studyDays: [{ date, startTime, endTime }],
+    date,
+    startTime,
+    endTime,
   };
+
+  console.log(trainingToCreate.studyDays);
   return fetch(`${BASE_URL}`, {
     method: "POST",
     mode: "cors",

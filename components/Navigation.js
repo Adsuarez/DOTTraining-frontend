@@ -8,7 +8,7 @@ const links = [
   },
   {
     label: "Create training",
-    route: "/trainingForm",
+    route: "/new-training",
   },
   {
     label: "Authentication",

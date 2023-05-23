@@ -1,25 +1,27 @@
 import { useState, useContext } from "react";
-import { UserContext } from "@/context/userContext";
+import { UserContext } from "@/context/UserContext";
 import { login } from "@/services/users.js";
 
 export default function LoginForm() {
   const { user, updateUser } = useContext(UserContext);
   const [error, setError] = useState({ status: false, message: "📝" });
-  console.log({ user });
   const handleLogin = (event) => {
     event.preventDefault();
     const { loginFormEmail: email, loginFormPassword: password } =
       Object.fromEntries(new FormData(event.target));
     login({ email, password }).then((json) => {
       console.log({ json });
-      if (json.errorMessage)
-        return setError({ status: true, message: `❌ ${json.errorMessage}` });
+      if (json.errorMessage) {
+        setError({ status: true, message: `❌ ${json.errorMessage}` });
+        return updateUser(null);
+      }
+
       if (json.token) {
         setError({
           status: false,
           message: "✔️ hello, you are logged correctly",
         });
-        return updateUser(json.token);
+        return updateUser(json);
       }
     });
   };

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import styles from "../styles/Navigation.module.css";
+import { useContext } from "react";
+import { UserContext } from "@/context/UserContext";
 
 const links = [
   {
@@ -17,6 +19,8 @@ const links = [
 ];
 
 export default function Navigation() {
+  const { user } = useContext(UserContext);
+
   return (
     <nav className={styles.nav}>
       <ul>
@@ -27,6 +31,7 @@ export default function Navigation() {
             </Link>
           </li>
         ))}
+        <li>{user?.username}</li>
       </ul>
     </nav>
   );

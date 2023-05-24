@@ -8,7 +8,6 @@ export function TrainingForm() {
   const [error, setError] = useState({ status: false, message: "✔️" });
   const token = user?.token;
   const permissions = user?.permissions;
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTraining = Object.fromEntries(new FormData(event.target));

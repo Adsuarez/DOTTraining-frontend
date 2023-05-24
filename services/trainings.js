@@ -15,7 +15,7 @@ export const getTrainings = async () => {
     .catch((error) => console.error({ error }));
 };
 
-export async function createTraining(newTraining, token) {
+export const createTraining = async (newTraining, token, permissions) => {
   const { name, quotas, date, startTime, endTime } = newTraining;
   const trainingToCreate = {
     name,
@@ -32,7 +32,7 @@ export async function createTraining(newTraining, token) {
       "content-type": "application/json; charset=UTF-8",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(trainingToCreate),
+    body: JSON.stringify({ trainingToCreate, permissions }),
   })
     .then((response) => response.json())
     .then((json) => {
@@ -41,4 +41,4 @@ export async function createTraining(newTraining, token) {
     .catch((error) => {
       return { status: true, errorMessage: error };
     });
-}
+};

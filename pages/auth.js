@@ -1,7 +1,7 @@
-import { handleSignin } from "@/helpers/handleAuth";
 import Layout from "../components/Layout";
 import styles from "../styles/FormAuth.module.css";
 import LoginForm from "@/components/LoginForm";
+import { SignInForm } from "@/components/SignInForm";
 
 export default function authPage() {
   return (
@@ -9,18 +9,7 @@ export default function authPage() {
       <h1>Gestión de sesión</h1>
       <div className={styles.div}>
         <LoginForm />
-        <h2>Registro</h2>
-        <form method="GET" onSubmit={handleSignin}>
-          <label htmlFor="signinFormEmail">email:</label>
-          <input
-            name="signinFormEmail"
-            type="email"
-            placeholder="example@domain.com"
-          />
-          <label htmlFor="signinFormPassword">password:</label>
-          <input name="signinFormPassword" type="password" />
-          <button>Registro</button>
-        </form>
+        <SignInForm />
       </div>
     </Layout>
   );

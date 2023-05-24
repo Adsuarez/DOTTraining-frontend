@@ -7,13 +7,14 @@ export function TrainingForm() {
   const { user } = useContext(UserContext);
   const [error, setError] = useState({ status: false, message: "✔️" });
   const token = user?.token;
+  const permissions = user?.permissions;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const newTraining = Object.fromEntries(new FormData(event.target));
     validateForm(event).then((validationResult) => {
       if (validationResult.status === false) {
-        createTraining(newTraining, token).then((json) => {
+        createTraining(newTraining, token, permissions).then((json) => {
           if (json.errorMessage)
             return setError({
               status: true,

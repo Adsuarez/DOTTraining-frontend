@@ -15,7 +15,6 @@ export async function createTraining(newTraining, token) {
     endTime,
   };
 
-  console.log(trainingToCreate.studyDays);
   return fetch(`${BASE_URL}`, {
     method: "POST",
     mode: "cors",
@@ -27,7 +26,6 @@ export async function createTraining(newTraining, token) {
   })
     .then((response) => response.json())
     .then((json) => {
-      console.log({ json });
       return json;
     })
     .catch((error) => {

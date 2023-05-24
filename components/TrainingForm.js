@@ -14,11 +14,10 @@ export function TrainingForm() {
     validateForm(event).then((validationResult) => {
       if (validationResult.status === false) {
         createTraining(newTraining, token).then((json) => {
-          console.log({ json });
           if (json.errorMessage)
             return setError({
               status: true,
-              message: `❌ ${json.errorMessage}, please try to sign in again`,
+              message: `❌ ${json.errorMessage}, please try to login again`,
             });
         });
       }

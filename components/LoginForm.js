@@ -10,7 +10,6 @@ export default function LoginForm() {
     const { loginFormEmail: email, loginFormPassword: password } =
       Object.fromEntries(new FormData(event.target));
     login({ email, password }).then((json) => {
-      console.log({ json });
       if (json.errorMessage) {
         setError({ status: true, message: `❌ ${json.errorMessage}` });
         return updateUser(null);

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext();
 
@@ -9,6 +9,14 @@ export default function UserContextProvider(props) {
     setUser(userInfo);
     return userInfo;
   };
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("loggedDOTTrainingUser");
+    if (loggedUserJSON) {
+      const userInfo = JSON.parse(loggedUserJSON);
+      updateUser(userInfo);
+    }
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, updateUser }}>

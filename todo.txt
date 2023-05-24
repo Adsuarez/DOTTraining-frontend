@@ -10,5 +10,5 @@
     - ❌ Visualiza los cursos vigentes
     - ❌ Se puede inscribir a cursos vigentes
     - ❌ Puede cancelar su asistencia a un curso inscrito y vigentes
-- ❌ Almacenamiento en base de datos MySQL
+- 🟠 Almacenamiento en base de datos MySQL
 - ✅ Añadir al final el required en los inputs

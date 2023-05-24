@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react";
 import { getTrainings } from "@/services/trainings";
 
-export default function Trainings() {
-  const trainingsList = getTrainings();
+export function TrainingsList() {
+  const [trainingsList, setTrainingsList] = useState([]);
+
+  useEffect(() => {
+    getTrainings().then((json) => {
+      if (json.errorMessage) return setTrainingsList([]);
+      return setTrainingsList(json);
+    });
+  }, []);
+
   return (
     <ul>
       {trainingsList.map((training) => (

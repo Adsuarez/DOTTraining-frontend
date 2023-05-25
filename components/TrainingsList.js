@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
-import { getTrainings } from "@/services/trainings";
+import { useContext, useEffect, useState } from "react";
+import { getTrainings, enrollTraining } from "@/services/trainings";
+import { UserContext } from "@/context/UserContext";
 
 export function TrainingsList() {
+  const { user } = useContext(UserContext);
   const [trainingsList, setTrainingsList] = useState([]);
 
   useEffect(() => {
@@ -10,6 +12,13 @@ export function TrainingsList() {
       return setTrainingsList(json);
     });
   }, []);
+
+  const handleClick = (event) => {
+    const { token } = user;
+    event.preventDefault();
+    const trainingId = event.target.name;
+    enrollTraining({ trainingId, token });
+  };
 
   return (
     <ul>
@@ -27,6 +36,11 @@ export function TrainingsList() {
               </li>
             ))}
           </ul>
+          <form>
+            <button type="button" name={training.id} onClick={handleClick}>
+              Inscribir
+            </button>
+          </form>
         </li>
       ))}
     </ul>

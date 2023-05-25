@@ -22,5 +22,10 @@ export async function signin({ email, password }) {
     mode: "cors",
     headers: { "content-type": "application/json; charset=UTF-8" },
     body: JSON.stringify({ email, password }),
-  });
+  })
+    .then((response) => response.json())
+    .then((json) => json)
+    .catch((error) => {
+      errorMessage: error;
+    });
 }

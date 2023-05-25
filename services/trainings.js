@@ -42,3 +42,18 @@ export const createTraining = async (newTraining, token, permissions) => {
       return { status: true, errorMessage: error };
     });
 };
+
+export const enrollTraining = async ({ token, trainingId }) => {
+  fetch(`${BASE_URL}/enroll`, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json; charset=UTF-8",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ trainingId }),
+  })
+    .then((response) => response.json())
+    .then((json) => console.log({ json }))
+    .catch((error) => console.error({ error }));
+};

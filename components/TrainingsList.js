@@ -1,23 +1,39 @@
 import { useContext, useEffect, useState } from "react";
-import { getTrainings, enrollTraining } from "@/services/trainings";
+import {
+  getTrainings,
+  enrollTraining,
+  cancelTraining,
+} from "@/services/trainings";
 import { UserContext } from "@/context/UserContext";
 
 export function TrainingsList() {
   const { user } = useContext(UserContext);
   const [trainingsList, setTrainingsList] = useState([]);
+  const [change, setChange] = useState(false);
 
   useEffect(() => {
     getTrainings().then((json) => {
       if (json.errorMessage) return setTrainingsList([]);
       return setTrainingsList(json);
     });
-  }, []);
+  }, [change]);
 
-  const handleClick = (event) => {
+  const enroll = (event) => {
     const { token } = user;
     event.preventDefault();
     const trainingId = event.target.name;
-    enrollTraining({ trainingId, token });
+    enrollTraining({ trainingId, token }).then((jsonResponse) => {
+      if (!jsonResponse.errorMessage) return setChange(!change);
+    });
+  };
+
+  const cancel = async (event) => {
+    const { token } = user;
+    event.preventDefault();
+    const trainingId = event.target.name;
+    await cancelTraining({ trainingId, token }).then((jsonResponse) => {
+      if (!jsonResponse.errorMessage) return setChange(!change);
+    });
   };
 
   return (
@@ -37,9 +53,15 @@ export function TrainingsList() {
             ))}
           </ul>
           <form>
-            <button type="button" name={training.id} onClick={handleClick}>
-              Inscribir
-            </button>
+            {training.enrolledStudents?.includes(user.userId) ? (
+              <button type="button" name={training.id} onClick={cancel}>
+                Cancelar
+              </button>
+            ) : (
+              <button type="button" name={training.id} onClick={enroll}>
+                Inscribir
+              </button>
+            )}
           </form>
         </li>
       ))}

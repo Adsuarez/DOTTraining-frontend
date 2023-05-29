@@ -1,4 +1,4 @@
-- 🟢 se evaluará MVC (separación de lógica de negocio del control de datos y la vista)
+- ✅ se evaluará MVC (separación de lógica de negocio del control de datos y la vista)
 - ❌ uso adecuado de HTML y CSS para mejor estética visual
 - ✅ Usuario admin se logea y puede crear capacitaciones
     - ✅ Asigna la cantidad de Cupos (limitados)
@@ -7,9 +7,9 @@
     - ✅ Validación de tiempos en JavaScript
 - ✅ Usuario user puede registrarse
     - ✅ Puede hacer login
-    - 🟢 Visualiza los cursos vigentes
-    - 🟢 Se puede inscribir a cursos vigentes
-    - 🟢 Puede cancelar su asistencia a un curso inscrito y vigentes
-- 🟢 Almacenamiento en base de datos MySQL
+    - ✅ Visualiza los cursos vigentes
+    - ✅ Se puede inscribir a cursos vigentes
+    - ✅ Puede cancelar su asistencia a un curso inscrito y vigentes
+- ✅ Almacenamiento en base de datos MySQL
 - ✅ Añadir al final el required en los inputs
 - ❌ solve issues problems recommended by chrome

@@ -2,9 +2,10 @@ import { useState, useContext } from "react";
 import { UserContext } from "@/context/UserContext";
 import { login } from "@/services/users.js";
 
+const INITIAL_ERROR_STATE = { status: false, message: "📝" };
 export default function LoginForm() {
   const { user, updateUser } = useContext(UserContext);
-  const [error, setError] = useState({ status: false, message: "📝" });
+  const [error, setError] = useState(INITIAL_ERROR_STATE);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -34,6 +35,7 @@ export default function LoginForm() {
     event.preventDefault();
     updateUser(null);
     window.localStorage.removeItem("loggedDOTTrainingUser");
+    return setError(INITIAL_ERROR_STATE);
   };
 
   return (
@@ -43,13 +45,13 @@ export default function LoginForm() {
           <h2>Inicio de sesión</h2>
           <p>{error.message}</p>
           <form method="GET" onSubmit={handleLogin}>
-            <label htmlFor="loginFormEmail">email:</label>
+            <label>email:</label>
             <input
               name="loginFormEmail"
               type="email"
               placeholder="example@domain.com"
             />
-            <label htmlFor="loginFormPassword">password:</label>
+            <label>password:</label>
             <input name="loginFormPassword" type="password" />
             <button>Iniciar sesión</button>
           </form>

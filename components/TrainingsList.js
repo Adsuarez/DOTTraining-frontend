@@ -52,17 +52,19 @@ export function TrainingsList() {
               </li>
             ))}
           </ul>
-          <form>
-            {training.enrolledStudents?.includes(user.userId) ? (
-              <button type="button" name={training.id} onClick={cancel}>
-                Cancelar
-              </button>
-            ) : (
-              <button type="button" name={training.id} onClick={enroll}>
-                Inscribir
-              </button>
-            )}
-          </form>
+          {user && (
+            <form>
+              {training.enrolledStudents?.includes(user.userId) ? (
+                <button type="button" name={training.id} onClick={cancel}>
+                  Cancelar
+                </button>
+              ) : (
+                <button type="button" name={training.id} onClick={enroll}>
+                  Inscribir
+                </button>
+              )}
+            </form>
+          )}
         </li>
       ))}
     </ul>

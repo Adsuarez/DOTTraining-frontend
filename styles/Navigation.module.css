@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+}
+
+.nav a,
+.nav ul {
+  align-items: center;
+  color: white;
+}
+
+.nav a:hover {
+  color: rgb(58, 173, 97);
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}

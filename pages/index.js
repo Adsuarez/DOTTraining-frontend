@@ -1,14 +1,11 @@
-import Navigation from "../components/Navigation";
-import Trainings from "../components/Trainings";
-import NewTraining from "../components/NewTraining";
+import { TrainingsList } from "../components/TrainingsList";
+import Layout from "../components/Layout";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main>
+    <Layout>
       <h1>Bienvenidos a DOTTrainings</h1>
-      <Navigation />
-      <Trainings />
-      <NewTraining />
-    </main>
+      <TrainingsList />
+    </Layout>
   );
 }

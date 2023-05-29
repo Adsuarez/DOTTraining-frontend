@@ -1,4 +1,4 @@
-export function validateForm(event) {
+export async function validateForm(event) {
   event.preventDefault();
   const { name, quotas, date, startTime, endTime } = Object.fromEntries(
     new FormData(event.target)
@@ -7,8 +7,34 @@ export function validateForm(event) {
   if (!name || !quotas || !date || !startTime || !endTime)
     return { status: true, message: "❌ No pueden quedar campos vacíos" };
 
+  // quotas validation
+  if (quotas <= 0)
+    return { status: true, message: "❌ Los cupos deben ser superior a cero" };
+
+  // weekdays validation
+  // comparison of past dates
+  const today = Date.now();
+  const selectedDate = Date.parse(date);
+  if (selectedDate < today)
+    return {
+      status: true,
+      message: "❌ Solo puede seleccionar dias a partir de mañana",
+    };
+
+  //verification of buisiness days
+  const dateStringToArray = date.split("-");
+  const parsedDate = new Date(dateStringToArray);
+  const weekDay = parsedDate.toUTCString().slice(0, 3);
+  if (weekDay.includes("Sat") || weekDay.includes("Sun"))
+    return {
+      status: true,
+      message: "❌ Solo se permiten días entre lunes y viernes",
+    };
+
   // Time validation
-  const [startHour, startMinutes] = startTime.split(":");
+  const arrayStartTime = startTime.split(":");
+  const startHour = Number(arrayStartTime[0]);
+  const startMinutes = Number(arrayStartTime[1]);
 
   if (startHour < 10)
     return {
@@ -16,29 +42,30 @@ export function validateForm(event) {
       message: "❌ No puede crear capacitaciones antes de las 10am",
     };
 
-  const [endHour, endMinutes] = endTime.split(":");
+  const arrayEndTime = endTime.split(":");
+  const endHour = Number(arrayEndTime[0]);
+  const endMinutes = Number(arrayEndTime[1]);
 
-  console.log(endMinutes);
-  if (endHour > 22 || (endHour == 22 && Number(endMinutes) > 0))
+  if (endHour > 22 || (endHour == 22 && endMinutes > 0))
     return {
       status: true,
       message: "❌ No puede crear capacitaciones despues de las 10pm",
     };
 
-  // weekdays validation
-  const newDate = date.split("-");
-  const parsedDate = new Date(newDate);
-  const weekDay = parsedDate.toUTCString().slice(0, 3);
-
-  if (weekDay.includes("Sat") || weekDay.includes("Sun"))
+  if (
+    endHour < startHour ||
+    (endHour === startHour && startMinutes >= endMinutes)
+  )
     return {
       status: true,
-      message: "❌ Solo se permiten días entre lunes y viernes",
+      message: "❌ La hora de fin no puede ser inferior que la hora de inicio",
     };
 
-  // quotas validation
-  if (quotas <= 0)
-    return { status: true, message: "❌ Los cupos deben ser superior a cero" };
+  if (startHour === endHour && endMinutes - startMinutes < 30)
+    return {
+      status: true,
+      message: "❌ La duración mínima de las capacitaciones es de 30 minutos",
+    };
 
   return { status: false, message: "✔️ Datos enviados correctamente" };
 }

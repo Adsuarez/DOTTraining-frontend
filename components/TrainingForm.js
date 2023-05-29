@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { createTraining } from "@/services/trainings";
 import { validateForm } from "@/helpers/validateForm";
 import { UserContext } from "@/context/UserContext";
@@ -11,7 +9,11 @@ export function TrainingForm() {
   const { user } = useContext(UserContext);
   const [error, setError] = useState({ status: false, message: "✔️" });
 
-  if (!user || user.permissions !== 1) return router.push("/");
+  useEffect(() => {
+    if (!user || user.permissions != 1) {
+      router.replace("/");
+    }
+  }, [router, user]);
 
   const token = user?.token;
   const permissions = user?.permissions;

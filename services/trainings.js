@@ -12,7 +12,9 @@ export const getTrainings = async () => {
     .then((json) => {
       return json;
     })
-    .catch((error) => console.error({ error }));
+    .catch((error) => {
+      return { errorMessage: error };
+    });
 };
 
 export const createTraining = async (newTraining, token, permissions) => {

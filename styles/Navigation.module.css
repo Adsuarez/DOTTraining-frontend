@@ -4,8 +4,12 @@
 
 .nav a,
 .nav ul {
-  text-decoration: none;
-  list-style: none;
+  align-items: center;
+  color: white;
+}
+
+.nav a:hover {
+  color: rgb(58, 173, 97);
 }
 
 .nav ul {

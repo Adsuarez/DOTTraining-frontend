@@ -1,5 +1,5 @@
 - ✅ se evaluará MVC (separación de lógica de negocio del control de datos y la vista)
-- ❌ uso adecuado de HTML y CSS para mejor estética visual
+- ✅ uso adecuado de HTML y CSS para mejor estética visual
 - ✅ Usuario admin se logea y puede crear capacitaciones
     - ✅ Asigna la cantidad de Cupos (limitados)
     - ✅ Horarios de 10 a 10pm
@@ -12,4 +12,4 @@
     - ✅ Puede cancelar su asistencia a un curso inscrito y vigentes
 - ✅ Almacenamiento en base de datos MySQL
 - ✅ Añadir al final el required en los inputs
-- ❌ solve issues problems recommended by chrome
+- ✅ solve issues problems recommended by chrome

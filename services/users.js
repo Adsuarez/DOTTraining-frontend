@@ -26,6 +26,8 @@ export async function signin({ email, password }) {
     .then((response) => response.json())
     .then((json) => json)
     .catch((error) => {
-      errorMessage: error;
+      return {
+        errorMessage: error,
+      };
     });
 }

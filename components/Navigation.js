@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/Navigation.module.css";
+import styles from "@/styles/Navigation.module.css";
 import { useContext } from "react";
 import { UserContext } from "@/context/UserContext";
 
@@ -29,7 +29,7 @@ export default function Navigation() {
     <nav className={styles.nav}>
       <ul>
         {links.map((link) => {
-          if (link.authRequired == permissions)
+          if (link.authRequired == permissions) {
             return (
               <li key={link.route}>
                 <Link href={link.route}>
@@ -37,6 +37,15 @@ export default function Navigation() {
                 </Link>
               </li>
             );
+          } else if (link.authRequired == 0) {
+            return (
+              <li key={link.route}>
+                <Link href={link.route}>
+                  <p>{link.label}</p>
+                </Link>
+              </li>
+            );
+          }
         })}
         <li>{user?.username}</li>
       </ul>

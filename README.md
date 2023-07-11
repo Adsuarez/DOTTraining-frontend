@@ -1,5 +1,30 @@
+# DOT TRAINING
+---
+## App description:
+
+DotTraining is an app to create trainings and enroll in them. there are two kinds of users. With teacher user you can create a training, and the teacher or the student users can enroll in the trainings. 
+
+### The characteristics of the trainings are:
+- Can't create a course in past days,
+- Trainings only are aviable on monday to friday,
+- There are a limit of the quotas,
+- The Aviable time is from 10am to 10pm,
+- Delete expired training.
+
 Use the demo in the next link: https://dot-training-frontend.vercel.app/
 
+__Users:__
+
+User teacher (Admin):
+- Email: test_admin@dottraining.com
+- Password: AdminPassword123
+
+User student (user):
+- Email: test_student@dottraining.com
+- Password: StudentPassword123
+
+---
+## Project description
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

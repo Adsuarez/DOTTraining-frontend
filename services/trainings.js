@@ -1,5 +1,5 @@
 // const BASE_URL = "http://localhost:3333/api/trainings";
-const BASE_URL = "https://dot-training-server.fly.dev/api/trainings";
+const BASE_URL = "https://dot-training-backend.fly.dev/api/trainings";
 
 export const getTrainings = async () => {
   return fetch(BASE_URL, {

@@ -1,5 +1,5 @@
 // const BASE_URL = "http://localhost:3333/api/users";
-const BASE_URL = "https://dot-training-server.fly.dev/api/users";
+const BASE_URL = "https://dot-training-backend.fly.dev/api/users";
 
 export async function login({ email, password }) {
   return fetch(`${BASE_URL}/login`, {
